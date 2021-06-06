@@ -1,5 +1,6 @@
 import {store} from '../store/store.js';
 import {component} from '../../dragonjs-component/core/component.js';
+import {events, query} from '../../dragonjs-component/core/helper/dom.js';
 
 const options = {
   strokeWidth: 5,
@@ -7,6 +8,22 @@ const options = {
 };
 
 export const LineComponent = component(({html}, {props}) => {
+  const actions = {
+    addPoint: (event) => {
+      event.preventDefault();
+      event.stopPropagation();
+
+      const {pageX, pageY, target} = event;
+      const index = parseInt(target.getAttribute('data-index'));
+      const {left, top} = store.svgOffset.get();
+      const coordinate = store.coordinates.get()[props];
+      coordinate.splice(index + 1, 0, [pageX - left, pageY - top]);
+      store.coordinates.set({
+        ...store.coordinates.get(),
+        [props]: coordinate,
+      });
+    }
+  };
   const render = () => {
     const coordinate = store.coordinates.get()[props];
     let template = '';
@@ -19,7 +36,15 @@ export const LineComponent = component(({html}, {props}) => {
               stroke-width="${options.strokeWidth}" stroke="${options.stroke}" data-index="${i}"></line>`;
     }
 
-    return html(`<g>${template}</g>`);
+    const dom = html(`<g>${template}</g>`);
+
+    for (let i = 0, len = coordinate.length; i < len; i++) {
+      events(query(dom, `[data-index="${i}"]`), {
+        click: actions.addPoint
+      });
+    }
+
+    return dom;
   };
 
   return render;

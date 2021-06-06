@@ -34,9 +34,12 @@ export const calibrateCoordinate = ({pageX, pageY}) => {
 
 export const changePoint = ({x, y}) => {
   const {index, key} = store.selectedPoint.get();
-  const coordinate = store[key].get();
+  const coordinate = store.coordinates.get()[key];
   coordinate[index] = [x, y];
-  store[key].set(coordinate);
+  store.coordinates.set({
+		...store.coordinates.get(),
+		[key]: coordinate
+	});
 	save();
 };
 

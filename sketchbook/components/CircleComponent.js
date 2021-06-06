@@ -1,12 +1,29 @@
 import {store} from '../store/store.js';
 import {component} from '../../dragonjs-component/core/component.js';
+import {clearSelectedPoint, hasActiveGeometry, selectPoint} from '../store/mutation.js';
+import {events, query} from '../../dragonjs-component/core/helper/dom.js';
 
 const options = {
   radius: 10,
   fill: 'rgba(255, 102, 51)'
 };
+const getIndex = elem => parseInt(elem.getAttribute('data-index'));
 
 export const CircleComponent = component(({html}, {props}) => {
+  const actions = {
+    select: (event) => {
+      selectPoint({
+        coordinateKey: props,
+        pointIndex: getIndex(event.target)
+      });
+    },
+    unselect: () => {
+      if (hasActiveGeometry()) {
+        return;
+      }
+      clearSelectedPoint();
+    }
+  };
   const render = () => {
     const coordinate = store.coordinates.get()[props];
     const template = coordinate.reduce((html, [x, y], index) => {
@@ -14,7 +31,16 @@ export const CircleComponent = component(({html}, {props}) => {
       return html;
     }, '');
 
-    return html(`<g>${template}</g>`);
+    const dom = html(`<g>${template}</g>`);
+
+    coordinate.forEach((_, index) => {
+      events(query(dom, `[data-index="${index}"]`), {
+        mousedown: actions.select,
+        mouseup: actions.unselect,
+      });
+    });
+
+    return dom;
   };
 
   return render;
