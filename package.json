@@ -5,12 +5,13 @@
   "scripts": {
     "dev": "http-server",
     "upload": "git add -A && git commit -m 'add' && git push origin master",
-    "lint:fix": "eslint --fix --ext .js ./src"
+    "lint:fix": "eslint . --fix --ext .js"
   },
   "keywords": [],
   "author": "",
   "license": "MIT",
   "devDependencies": {
+    "eslint": "^7.28.0",
     "http-server": "^0.12.3"
   }
 }
