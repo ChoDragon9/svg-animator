@@ -1,0 +1,14 @@
+{
+  "name": "svg-animator",
+  "version": "0.0.1",
+  "description": "",
+  "scripts": {
+    "upload": "git add -A && git commit -m 'add' && git push origin master",
+    "lint:fix": "eslint --fix --ext .js ./src"
+  },
+  "keywords": [],
+  "author": "",
+  "license": "MIT",
+  "devDependencies": {
+  }
+}
