@@ -1,9 +1,9 @@
 export const html = (template) => {
-  const body = document.createElement('body');
-  body.innerHTML = template;
+  const svg = document.createElementNS('http://www.w3.org/2000/svg', 'svg');
+  svg.innerHTML = template;
 
-  if (body.childNodes.length > 1) {
+  if (svg.childNodes.length > 1) {
     console.warn('Wrapper 태그 필요!');
   }
-  return body.childNodes[0];
+  return svg.childNodes[0];
 };
