@@ -12,3 +12,10 @@
 1. 동적으로 svg 애니메이션 할 수 있는 기능 개발
 1. UI로 애니메이션 할 수 있는 기능 개발
 1. 내보내기/불러오기 기능 추가
+
+## 목표
+커피 레시피를 SVG 애니메이션으로 만들기
+
+![](https://blog.kakaocdn.net/dn/cufi1T/btqJPBCIVbf/3XH4k5H4Eg37oZ5ygrvjmK/img.gif)
+
+![](https://i.pinimg.com/originals/8f/ab/a0/8faba0c528abb711eca46a7e70674c97.gif)
