@@ -46,15 +46,18 @@ export const changePoint = ({x, y}) => {
 export const changePolygon = ({x, y}) => {
   const prevCoordinate = store.prevCoordinate.get();
   if (prevCoordinate === null) {
-    store.selectedPolygon.set([x, y]);
+    store.prevCoordinate.set([x, y]);
   } else {
     const key = store.selectedPolygon.get().key;
-    const coordinate = store.get(key);
+    const coordinate = store.coordinates.get()[key];
     const movedX = x - prevCoordinate[0];
     const movedY = y - prevCoordinate[1];
     const newCoord = coordinate.map(([x, y]) => [x + movedX, y + movedY]);
-    store[key].set(newCoord);
-    store.selectedPolygon.set([x, y]);
+    store.coordinates.set({
+			...store.coordinates.get(),
+			[key]: newCoord,
+		});
+    store.prevCoordinate.set([x, y]);
   }
 	save();
 };
@@ -92,9 +95,10 @@ export const clearCustom = () => {
 };
 
 export const removeCoordinate = coordinateKey => {
-	store.coordinates.set(...{
-		...store.coordinates.get(),
-		[coordinateKey]: undefined
-	});
+	store.coordinates.set(Object.fromEntries(
+		Object
+			.entries(store.coordinates.get())
+			.filter(([key]) => key !== coordinateKey)
+	));
 	save();
 };
