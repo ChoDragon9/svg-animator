@@ -9,7 +9,9 @@ export const patch = (fragmentDOM, actualDOM) => {
       const fragment = fragmentDOMChildren[index];
       const actual = actualDOMChildren[index];
 
-      if(isNodeRemoved(fragment)) {
+      if (isNodeCreated(fragment, actual)) {
+        actualDOM.appendChild(fragment);
+      } else if(isNodeRemoved(fragment)) {
         actualDOM.removeChild(actual);
       } else if (isNodeChanged(fragment, actual)) {
         actualDOM.replaceChild(fragment, actual);
@@ -24,6 +26,7 @@ export const patch = (fragmentDOM, actualDOM) => {
     });
 };
 
+const isNodeCreated = (fragmentDOM, actualDOM) => fragmentDOM && !actualDOM;
 const isNodeChanged = (fragmentDOM, actualDOM) => {
   const fragmentDOMChildren = toChildren(fragmentDOM);
   const actualDOMChildren = toChildren(actualDOM);
@@ -32,7 +35,7 @@ const isNodeChanged = (fragmentDOM, actualDOM) => {
 };
 const isNodeRemoved = (fragmentDOM) => fragmentDOM === undefined;
 const isTextChanged = (fragmentDOM, actualDOM) => {
-  if (isTextNode(fragmentDOM.nodeName) && isTextNode(actualDOM.nodeName)) {
+  if (isTextNode(fragmentDOM) && isTextNode(actualDOM)) {
     return fragmentDOM.textContent !== actualDOM.textContent;
   } else {
     return false;
