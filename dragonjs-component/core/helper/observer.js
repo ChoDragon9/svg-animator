@@ -3,13 +3,13 @@ export const createSubject = () => {
 
   return {
     notify: (value) => {
-      set.forEach(observer => observer(value))
+      set.forEach(observer => observer(value));
     },
     subscribe: (observer) => {
-      set.add(observer)
+      set.add(observer);
     },
     unsubscribe: (observer) => {
-      set.remove(observer)
+      set.remove(observer);
     }
   };
 };

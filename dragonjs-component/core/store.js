@@ -8,15 +8,15 @@ export const createStore = () => {
       const get = () => value;
       const set = (newValue, shouldNotify = true) => {
         value = newValue;
-        shouldNotify && subject.notify()
+        shouldNotify && subject.notify();
       };
-      return {get, set}
+      return {get, set};
     });
   };
   const share = (store) => {
     store._subscribe(() => {
       subject.notify();
-    })
+    });
   };
 
   return {
@@ -24,5 +24,5 @@ export const createStore = () => {
     share,
     _subscribe: subject.subscribe,
     _unsubscribe: subject.unsubscribe,
-  }
+  };
 };

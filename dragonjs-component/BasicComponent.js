@@ -8,5 +8,5 @@ export const BasicComponent = component(({html}) => {
     </div>`);
   };
 
-  return render
+  return render;
 });

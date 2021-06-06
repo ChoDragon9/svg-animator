@@ -12,7 +12,7 @@ export const CounterButton = component(({html, store}) => {
 
   const actions = {
     upCount: () => {
-      sharedState.count.set(sharedState.count.get() + 1)
+      sharedState.count.set(sharedState.count.get() + 1);
     }
   };
   const render = () => {
@@ -51,5 +51,5 @@ export const MainComponent = component(({html, store}) => {
     );
 
     return dom;
-  }
+  };
 });

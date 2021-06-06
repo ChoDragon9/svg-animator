@@ -7,7 +7,7 @@ export const ConditionComponent = component(({store, html}) => {
   });
   const actions = {
     toggle: () => {
-      state.toggle.set(!state.toggle.get())
+      state.toggle.set(!state.toggle.get());
     }
   };
 
@@ -25,5 +25,5 @@ export const ConditionComponent = component(({store, html}) => {
     return dom;
   };
 
-  return render
+  return render;
 });

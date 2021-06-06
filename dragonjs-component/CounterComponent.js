@@ -31,5 +31,5 @@ export const CounterComponent = component(({store, html}) => {
     return dom;
   };
 
-  return render
+  return render;
 });

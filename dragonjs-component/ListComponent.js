@@ -14,7 +14,7 @@ export const ListComponent = component(({store, html}) => {
       state.todoList.set([
         ...state.todoList.get(),
         state.inputText.get()
-      ])
+      ]);
       state.inputText.set('', false);
     },
     changeInput: (inputText) => {
@@ -29,10 +29,10 @@ export const ListComponent = component(({store, html}) => {
       <button type="button">Add</button>
       <ol>
        ${state.todoList.get().map((item) => {
-          return `<li>${item}</li>`
+          return `<li>${item}</li>`;
         }).join('')}
       </ol>
-    </div>`)
+    </div>`);
 
     const input = query(dom, 'input');
     const button = query(dom, 'button');
@@ -45,7 +45,7 @@ export const ListComponent = component(({store, html}) => {
     });
     events(input, {
       input: (event) => {
-        actions.changeInput(event.target.value)
+        actions.changeInput(event.target.value);
       }
     });
 

@@ -7,7 +7,7 @@ export const ParentButton = component(({html, store}) => {
   });
   const actions = {
     upCount: () => {
-      state.count.set(state.count.get() + 1)
+      state.count.set(state.count.get() + 1);
     }
   };
   const render = () => {
