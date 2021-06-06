@@ -1,6 +1,6 @@
 ## 할 일
 ### 기존 작업 가져오기
-1. component 펫 프로젝트 클론
+1. ~~component 펫 프로젝트 클론~~
    - https://chodragon9.github.io/dragonjs/src/component/2020-08-component/
 1. eslint 설정
 1. sketchbook 펫 프로젝트 마이그레이션
