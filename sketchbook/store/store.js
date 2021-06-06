@@ -34,5 +34,5 @@ let state = {
 //   state = {...state, ...storageState};
 // }
 
-const sharedStore = createStore();
+export const sharedStore = createStore();
 export const store = sharedStore.useState(state);

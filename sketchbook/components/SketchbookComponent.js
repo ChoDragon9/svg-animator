@@ -1,11 +1,13 @@
-import {store} from '../store/store.js';
+import {store, sharedStore} from '../store/store.js';
 import {component} from '../../dragonjs-component/core/component.js';
 import {LineComponent} from './LineComponent.js';
 import {append, query} from '../../dragonjs-component/core/helper/dom.js';
 import {PolygonComponent} from './PolygonComponent.js';
 import {CircleComponent} from './CircleComponent.js';
 
-export const SketchbookComponent = component(({html}) => {
+export const SketchbookComponent = component(({html, store: componentStore}) => {
+  componentStore.share(sharedStore);
+
   const render = () => {
     const dom = html(`<div class="sketchbook">
       <svg width="100%"
@@ -24,7 +26,9 @@ export const SketchbookComponent = component(({html}) => {
         append(svg, CircleComponent({props: key}));
       });
 
-    store.svgOffset.set(dom.getBoundingClientRect());
+    if (!store.svgOffset.get()) {
+      store.svgOffset.set(dom.getBoundingClientRect());
+    }
 
     return dom;
   };
