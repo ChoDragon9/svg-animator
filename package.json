@@ -3,6 +3,7 @@
   "version": "0.0.1",
   "description": "",
   "scripts": {
+    "dev": "http-server",
     "upload": "git add -A && git commit -m 'add' && git push origin master",
     "lint:fix": "eslint --fix --ext .js ./src"
   },
@@ -10,5 +11,6 @@
   "author": "",
   "license": "MIT",
   "devDependencies": {
+    "http-server": "^0.12.3"
   }
 }
