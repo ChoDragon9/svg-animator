@@ -14,6 +14,9 @@ export const PolygonComponent = component(({html}, {props}) => {
     unselect: () => {
       store.selectedPolygon.set({ key: null });
       store.prevCoordinate.set(null);
+    },
+    onClick: events => {
+      events.stopPropagation();
     }
   };
   const render = () => {
@@ -25,6 +28,7 @@ export const PolygonComponent = component(({html}, {props}) => {
     events(query(dom, 'polygon'), {
       mousedown: actions.select,
       mouseup: actions.unselect,
+      click: actions.onClick
     });
 
     return dom;

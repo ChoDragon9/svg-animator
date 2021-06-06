@@ -22,6 +22,11 @@ export const CircleComponent = component(({html}, {props}) => {
         return;
       }
       clearSelectedPoint();
+    },
+    onClick: events => {
+      if (!hasActiveGeometry()) {
+        events.stopPropagation();
+      }
     }
   };
   const render = () => {
@@ -37,6 +42,7 @@ export const CircleComponent = component(({html}, {props}) => {
       events(query(dom, `[data-index="${index}"]`), {
         mousedown: actions.select,
         mouseup: actions.unselect,
+        click: actions.onClick,
       });
     });
 
