@@ -1,0 +1,131 @@
+<!doctype html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport"
+        content="width=device-width, user-scalable=no, initial-scale=1.0, maximum-scale=1.0, minimum-scale=1.0">
+  <meta http-equiv="X-UA-Compatible" content="ie=edge">
+  <title>Document</title>
+</head>
+<body>
+<h1>선 명령어</h1>
+<pre>M 10 10 H 90 V 90 H 10 L 10 10</pre>
+<svg width="120" height="120" xmlns="http://www.w3.org/2000/svg">
+  <path d="M 10 10 H 90 V 90 H 10 L 10 10"/>
+</svg>
+<pre>M 10 10 H 90 V 90 H 10 Z</pre>
+<svg width="120" height="120" xmlns="http://www.w3.org/2000/svg">
+  <path d="M 10 10 H 90 V 90 H 10 Z"/>
+</svg>
+<pre>M 10 10 h 80 v 80 h -80 z</pre>
+<svg width="120" height="120" xmlns="http://www.w3.org/2000/svg">
+  <path d="M 10 10 h 80 v 80 h -80 z"/>
+</svg>
+
+<h1>곡선 명령어</h1>
+<h2>C</h2>
+<pre>
+M 10 10 C 20 20, 40 20, 50 10
+M 70 10 C 70 20, 120 20, 120 10
+M 130 10 C 120 20, 180 20, 170 10
+M 10 60 C 20 80, 40 80, 50 60
+M 70 60 C 70 80, 110 80, 110 60
+M 130 60 C 120 80, 180 80, 170 60
+M 10 110 C 20 140, 40 140, 50 110
+M 70 110 C 70 140, 110 140, 110 110
+M 130 110 C 120 140, 180 140, 170 110
+</pre>
+<svg width="190" height="160" xmlns="http://www.w3.org/2000/svg">
+  <path d="M 10 10 C 20 20, 40 20, 50 10" stroke="black" fill="transparent"/>
+  <path d="M 70 10 C 70 20, 120 20, 120 10" stroke="black" fill="transparent"/>
+  <path d="M 130 10 C 120 20, 180 20, 170 10" stroke="black" fill="transparent"/>
+  <path d="M 10 60 C 20 80, 40 80, 50 60" stroke="black" fill="transparent"/>
+  <path d="M 70 60 C 70 80, 110 80, 110 60" stroke="black" fill="transparent"/>
+  <path d="M 130 60 C 120 80, 180 80, 170 60" stroke="black" fill="transparent"/>
+  <path d="M 10 110 C 20 140, 40 140, 50 110" stroke="black" fill="transparent"/>
+  <path d="M 70 110 C 70 140, 110 140, 110 110" stroke="black" fill="transparent"/>
+  <path d="M 130 110 C 120 140, 180 140, 170 110" stroke="black" fill="transparent"/>
+</svg>
+<img src="https://mdn.mozillademos.org/files/10401/Cubic_Bezier_Curves_with_grid.png">
+
+<h2>S</h2>
+<pre>
+M 10 80 C 40 10, 65 10, 95 80 S 150 150, 180 80
+</pre>
+<svg width="190" height="160" xmlns="http://www.w3.org/2000/svg">
+  <path d="M 10 80 C 40 10, 65 10, 95 80 S 150 150, 180 80" stroke="black" fill="transparent"/>
+</svg>
+<img src="https://mdn.mozillademos.org/files/10405/ShortCut_Cubic_Bezier_with_grid.png">
+
+<h2>Q</h2>
+<pre>
+M 10 80 Q 95 10 180 80
+</pre>
+<svg width="190" height="160" xmlns="http://www.w3.org/2000/svg">
+  <path d="M 10 80 Q 95 10 180 80" stroke="black" fill="transparent"/>
+</svg>
+<img src="https://mdn.mozillademos.org/files/10403/Quadratic_Bezier_with_grid.png">
+
+<h2>T</h2>
+<pre>
+M 10 80 Q 52.5 10, 95 80 T 180 80
+</pre>
+<svg width="190" height="160" xmlns="http://www.w3.org/2000/svg">
+  <path d="M 10 80 Q 52.5 10, 95 80 T 180 80" stroke="black" fill="transparent"/>
+</svg>
+<img src="https://mdn.mozillademos.org/files/10407/Shortcut_Quadratic_Bezier_with_grid.png">
+
+<h1>원호 명령어</h1>
+<pre>
+M 10 315
+L 110 215
+A 30 50 0 0 1 162.55 162.45
+L 172.55 152.45
+A 30 50 -45 0 1 215.1 109.9
+L 315 10
+</pre>
+<svg width="320" height="320" xmlns="http://www.w3.org/2000/svg">
+  <path d="M10 315
+           L 110 215
+           A 30 50 0 0 1 162.55 162.45
+           L 172.55 152.45
+           A 30 50 -45 0 1 215.1 109.9
+           L 315 10" stroke="black" fill="green" stroke-width="2" fill-opacity="0.5"/>
+</svg>
+<img src="https://mdn.mozillademos.org/files/10409/SVGArcs_XAxisRotation_with_grid.png">
+
+<pre>
+M 80 80
+A 45 45, 0, 0, 0, 125 125
+L 125 80 Z
+
+M 230 80
+A 45 45, 0, 1, 0, 275 125
+L 275 80 Z
+
+M 80 230
+A 45 45, 0, 0, 1, 125 275
+L 125 230 Z
+
+M 230 230
+A 45 45, 0, 1, 1, 275 275
+L 275 230 Z
+</pre>
+
+<svg width="325" height="325" xmlns="http://www.w3.org/2000/svg">
+  <path d="M80 80
+           A 45 45, 0, 0, 0, 125 125
+           L 125 80 Z" fill="green"/>
+  <path d="M230 80
+           A 45 45, 0, 1, 0, 275 125
+           L 275 80 Z" fill="red"/>
+  <path d="M80 230
+           A 45 45, 0, 0, 1, 125 275
+           L 125 230 Z" fill="purple"/>
+  <path d="M230 230
+           A 45 45, 0, 1, 1, 275 275
+           L 275 230 Z" fill="blue"/>
+</svg>
+<img src="https://media.prod.mdn.mozit.cloud/attachments/2012/07/09/720/55afdeb8bb8ce26c75855e76fb1e72d4/SVGArcs_Flags.png">
+</body>
+</html>
