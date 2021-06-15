@@ -11,7 +11,7 @@
 <h1>style, script의 영향 범위</h1>
 <svg width="100" height="100" xmlns="http://www.w3.org/2000/svg">
   <style>
-    circle {
+    circle[cx='50'] {
       fill: gold;
       stroke: maroon;
       stroke-width: 2px;
@@ -28,6 +28,58 @@
     console.log(add(5, 5));
   </script>
   <circle cx="50" cy="50" r="50" />
+</svg>
+
+<h1>symbol과 defs의 차이</h1>
+<svg viewBox="0 0 80 20" xmlns="http://www.w3.org/2000/svg">
+  <!-- Our symbol in its own coordinate system -->
+  <symbol id="myDot" width="10" height="10" viewBox="0 0 2 2">
+    <circle cx="1" cy="1" r="1" />
+  </symbol>
+
+  <!-- All instances of our symbol -->
+  <use xlink:href="#myDot" x="5"  y="5" style="opacity:1.0" />
+  <use xlink:href="#myDot" x="20" y="5" style="opacity:0.8" />
+  <use xlink:href="#myDot" x="35" y="5" style="opacity:0.6" />
+  <use xlink:href="#myDot" x="50" y="5" style="opacity:0.4" />
+  <use xlink:href="#myDot" x="65" y="5" style="opacity:0.2" />
+</svg>
+<svg viewBox="0 0 10 10" width="100" height="100" xmlns="http://www.w3.org/2000/svg"
+     xmlns:xlink="http://www.w3.org/1999/xlink">
+  <!-- Some graphical objects to use -->
+  <defs>
+    <circle id="myCircle" cx="0" cy="0" r="5" />
+
+    <linearGradient id="myGradient" gradientTransform="rotate(90)">
+      <stop offset="20%" stop-color="gold" />
+      <stop offset="90%" stop-color="red" />
+    </linearGradient>
+  </defs>
+
+  <!-- using my graphical objects -->
+  <use x="5" y="5" xlink:href="#myCircle" fill="url('#myGradient')" />
+</svg>
+
+<svg viewBox="0 0 80 20" xmlns="http://www.w3.org/2000/svg">
+  <defs>
+    <circle id="myCircle" cx="1" cy="1" r="1" />
+
+    <linearGradient id="myGradient" gradientTransform="rotate(90)">
+      <stop offset="20%" stop-color="gold" />
+      <stop offset="90%" stop-color="red" />
+    </linearGradient>
+  </defs>
+  <!-- Our symbol in its own coordinate system -->
+  <symbol id="myDot" width="10" height="10" viewBox="0 0 2 2">
+    <use xlink:href="#myCircle" />
+  </symbol>
+
+  <!-- All instances of our symbol -->
+  <use xlink:href="#myDot" x="5"  y="5" fill="url('#myGradient')" />
+  <use xlink:href="#myDot" x="20" y="5" fill="url('#myGradient')" />
+  <use xlink:href="#myDot" x="35" y="5" fill="url('#myGradient')" />
+  <use xlink:href="#myDot" x="50" y="5" fill="url('#myGradient')" />
+  <use xlink:href="#myDot" x="65" y="5" fill="url('#myGradient')" />
 </svg>
 </body>
 </html>
