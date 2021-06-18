@@ -8,7 +8,7 @@ export const createGeometry = (key, value) => {
 		...coordinates,
 		[key]: value,
 	});
-	save();
+	save(store.coordinates.get());
 };
 
 export const changeCoordinate = ({pageX, pageY}) => {
@@ -22,7 +22,7 @@ export const changeCoordinate = ({pageX, pageY}) => {
       changePolygon({x, y});
       break;
   }
-	save();
+	save(store.coordinates.get());
 };
 
 export const calibrateCoordinate = ({pageX, pageY}) => {
@@ -40,7 +40,7 @@ export const changePoint = ({x, y}) => {
 		...store.coordinates.get(),
 		[key]: coordinate
 	});
-	save();
+	save(store.coordinates.get());
 };
 
 export const changePolygon = ({x, y}) => {
@@ -59,7 +59,7 @@ export const changePolygon = ({x, y}) => {
 		});
     store.prevCoordinate.set([x, y]);
   }
-	save();
+	save(store.coordinates.get());
 };
 
 export const selectPoint = ({coordinateKey, pointIndex}) => {
@@ -100,5 +100,5 @@ export const removeCoordinate = coordinateKey => {
 			.entries(store.coordinates.get())
 			.filter(([key]) => key !== coordinateKey)
 	));
-	save();
+	save(store.coordinates.get());
 };

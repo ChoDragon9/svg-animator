@@ -1,8 +1,10 @@
 import {createStore} from '../../dragonjs-component/core/store.js';
 import {load} from '../shared/helper.js';
 
-let state = {
+const storageState = load();
+const state = {
   coordinates: {
+    ...(storageState || {}),
     defaultRect: [
       [100, 100],
       [100, 200],
@@ -28,11 +30,6 @@ let state = {
   currentPolygon: null,
   svgOffset: null,
 };
-
-// const storageState = load();
-// if (storageState) {
-//   state = {...state, ...storageState};
-// }
 
 export const sharedStore = createStore();
 export const store = sharedStore.useState(state);

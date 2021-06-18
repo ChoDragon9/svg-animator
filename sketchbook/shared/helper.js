@@ -1,5 +1,3 @@
-import {store} from '../store/store.js';
-
 const setStorage = value => {
 	localStorage.setItem('Sketchbook', JSON.stringify(value));
 };
@@ -11,8 +9,7 @@ export const clear = () => {
 	setStorage(null);
 };
 
-export const save = () => {
-	const coordinates = store.coordinates.get();
+export const save = (coordinates) => {
 	setStorage(coordinates);
 };
 
