@@ -1,8 +1,8 @@
 import {component} from '../../dragonjs-component/core/component.js';
 import {events, query, replaceWith} from '../../dragonjs-component/core/helper/dom.js';
-import {clear, createNewKey} from '../shared/helper.js';
-import {createGeometry} from '../store/mutation.js';
-import {SketchbookComponent} from './SketchbookComponent.js';
+import {clear, createNewKey} from '../../sketchbook/shared/helper.js';
+import {createGeometry} from '../../sketchbook/store/mutation.js';
+import {SketchbookComponent} from '../../sketchbook/components/SketchbookComponent.js';
 
 export const MainComponent = component(({html}) => {
   const actions = {
