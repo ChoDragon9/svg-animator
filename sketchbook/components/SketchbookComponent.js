@@ -37,7 +37,7 @@ export const SketchbookComponent = component(({html, store: componentStore}) => 
         selectPoint({coordinateKey: currentPolygon, pointIndex: currentPoint + 1});
         store.currentPoint.set(currentPoint + 1);
       }
-      if (currentPoint >= 1 && currentPoint <= 3) {
+      if (currentPoint >= 1 && currentPoint <= 2) {
         addPoint({coordinateKey: currentPolygon, coordinate: [x, y]});
       }
       if (currentPoint === 3) {
