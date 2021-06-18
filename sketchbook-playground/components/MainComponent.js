@@ -45,7 +45,9 @@ export const MainComponent = component(({html}) => {
           <li>배경 클릭으로 사각형 추가시, ESC로 생성 취소</li>        
         </ul>
       </div>
-      <sketchbook></sketchbook>
+      <div class="sketchbook">
+        <sketchbook></sketchbook>
+      </div>
     </div>`);
 
     events(query(dom, '.rect'), {

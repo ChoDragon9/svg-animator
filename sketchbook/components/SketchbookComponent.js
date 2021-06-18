@@ -58,25 +58,23 @@ export const SketchbookComponent = component(({html, store: componentStore}) => 
   };
 
   const render = () => {
-    const dom = html(`<div class="sketchbook">
-      <svg width="100%"
-           height="100%"
-           xmlns="http://www.w3.org/2000/svg">
-      </svg>
-    </div>`);
+    const dom = html(`<svg 
+      width="100%"
+      height="100%"
+      xmlns="http://www.w3.org/2000/svg">
+    </svg>`);
 
     const coordinates = store.coordinates.get();
-    const svg = query(dom, 'svg');
 
     Object
       .keys(coordinates)
       .forEach(key => {
-        append(svg, PolygonComponent({props: key}));
-        append(svg, LineComponent({props: key}));
-        append(svg, CircleComponent({props: key}));
+        append(dom, PolygonComponent({props: key}));
+        append(dom, LineComponent({props: key}));
+        append(dom, CircleComponent({props: key}));
       });
 
-    events(svg, {
+    events(dom, {
       mousemove: actions.onMouseMove,
       click: actions.onClick,
     });
