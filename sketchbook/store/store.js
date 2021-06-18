@@ -4,7 +4,6 @@ import {load} from '../shared/helper.js';
 const storageState = load();
 const state = {
   coordinates: {
-    ...(storageState || {}),
     defaultRect: [
       [100, 100],
       [100, 200],
@@ -17,6 +16,7 @@ const state = {
       [400, 200]
     ],
     defaultStar: [[555, 89], [538, 124], [499, 128], [521, 162], [505, 189], [538, 188], [554, 220], [576, 186], [611, 185], [587, 152], [612, 123], [572, 125]],
+    ...(storageState || {}),
   },
   selectedPoint: {
     index: null,
