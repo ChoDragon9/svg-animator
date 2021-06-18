@@ -8,6 +8,9 @@
 1. ~~모양 컴포넌트 추가~~
 
 ### Phase 1 - Prototype
+> Component <=> Store 그리고 Store <=> Store 형태인 이유는
+> Component을 State 기반으로 렌더링하고, 구조의 단순화를 위함.
+
 - 각 모듈 개발
   - SketchBook: 도형 그리는 스케치북
   - Timeline: 애니메이션 타임라인 설정
