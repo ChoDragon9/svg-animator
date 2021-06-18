@@ -15,8 +15,8 @@
   - SketchBook: 도형 그리는 스케치북
   - Timeline: 애니메이션 타임라인 설정
 - SketchBook
-  - SketchBook<=>SketchBook Store 형태로 변경
-  - x, y, ref 저장
+  - ~~SketchBook<=>SketchBook Store 형태로 변경~~
+  - ~~x, y, ref 저장~~
 - Timeline
   - Timeline<=>Timeline Store 형태로 변경
   - Time, Name 저장
