@@ -1,0 +1,135 @@
+<!doctype html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport"
+        content="width=device-width, user-scalable=no, initial-scale=1.0, maximum-scale=1.0, minimum-scale=1.0">
+  <meta http-equiv="X-UA-Compatible" content="ie=edge">
+  <title>Document</title>
+</head>
+<body>
+<h1>style, script의 영향 범위</h1>
+<svg width="100" height="100" xmlns="http://www.w3.org/2000/svg">
+  <style>
+    circle[cx='50'] {
+      fill: gold;
+      stroke: maroon;
+      stroke-width: 2px;
+    }
+  </style>
+  <script>
+    const add = (a, b) => a + b;
+  </script>
+
+  <circle cx="50" cy="50" r="50" />
+</svg>
+<svg width="100" height="100" xmlns="http://www.w3.org/2000/svg">
+  <script>
+    console.log(add(5, 5));
+  </script>
+  <circle cx="50" cy="50" r="50" />
+</svg>
+
+<h1>symbol과 defs의 차이</h1>
+<svg viewBox="0 0 80 20" xmlns="http://www.w3.org/2000/svg">
+  <!-- Our symbol in its own coordinate system -->
+  <symbol id="myDot" width="10" height="10" viewBox="0 0 2 2">
+    <circle cx="1" cy="1" r="1" />
+  </symbol>
+
+  <!-- All instances of our symbol -->
+  <use xlink:href="#myDot" x="5"  y="5" style="opacity:1.0" />
+  <use xlink:href="#myDot" x="20" y="5" style="opacity:0.8" />
+  <use xlink:href="#myDot" x="35" y="5" style="opacity:0.6" />
+  <use xlink:href="#myDot" x="50" y="5" style="opacity:0.4" />
+  <use xlink:href="#myDot" x="65" y="5" style="opacity:0.2" />
+</svg>
+<svg viewBox="0 0 10 10" width="100" height="100" xmlns="http://www.w3.org/2000/svg"
+     xmlns:xlink="http://www.w3.org/1999/xlink">
+  <!-- Some graphical objects to use -->
+  <defs>
+    <circle id="myCircle" cx="0" cy="0" r="5" />
+
+    <linearGradient id="myGradient" gradientTransform="rotate(90)">
+      <stop offset="20%" stop-color="gold" />
+      <stop offset="90%" stop-color="red" />
+    </linearGradient>
+  </defs>
+
+  <!-- using my graphical objects -->
+  <use x="5" y="5" xlink:href="#myCircle" fill="url('#myGradient')" />
+</svg>
+
+<svg viewBox="0 0 80 20" xmlns="http://www.w3.org/2000/svg">
+  <defs>
+    <circle id="myCircle" cx="1" cy="1" r="1" />
+
+    <linearGradient id="myGradient" gradientTransform="rotate(90)">
+      <stop offset="20%" stop-color="gold" />
+      <stop offset="90%" stop-color="red" />
+    </linearGradient>
+  </defs>
+  <!-- Our symbol in its own coordinate system -->
+  <symbol id="myDot" width="10" height="10" viewBox="0 0 2 2">
+    <use xlink:href="#myCircle" />
+  </symbol>
+
+  <!-- All instances of our symbol -->
+  <use xlink:href="#myDot" x="5"  y="5" fill="url('#myGradient')" />
+  <use xlink:href="#myDot" x="20" y="5" fill="url('#myGradient')" />
+  <use xlink:href="#myDot" x="35" y="5" fill="url('#myGradient')" />
+  <use xlink:href="#myDot" x="50" y="5" fill="url('#myGradient')" />
+  <use xlink:href="#myDot" x="65" y="5" fill="url('#myGradient')" />
+</svg>
+
+<h1>path로 다른 도형들을 모두 대체할 수 있을까?</h1>
+<svg width="100%" height="100" xmlns="http://www.w3.org/2000/svg">
+  <circle cx="50" cy="50" r="50" />
+  <path d="M 100 50
+           A 50 50, 0, 0, 0, 200 50
+           A 50 50, 0, 0, 0, 100 50
+           Z"
+  />
+</svg>
+<svg width="100%" height="100" xmlns="http://www.w3.org/2000/svg">
+  <line x1="0" y1="50" x2="100" y2="50" stroke="black" />
+  <path d="M 100 50
+           H 200
+           Z"
+        stroke="gray"
+  />
+</svg>
+<svg width="100%" height="100" xmlns="http://www.w3.org/2000/svg">
+  <polygon points="25 25, 25 75, 75 75, 75 25" />
+  <path d="M 125 25
+           V 75
+           H 175
+           V 25
+           Z"
+  />
+</svg>
+<svg width="100%" height="100" xmlns="http://www.w3.org/2000/svg">
+  <polyline points="25 25, 25 75, 75 75, 75 25"
+            fill="none"
+            stroke="black"
+  />
+  <path d="M 125 25
+           V 75
+           H 175
+           V 25
+           "
+        fill="none"
+        stroke="black"
+  />
+</svg>
+<svg width="100%" height="100" xmlns="http://www.w3.org/2000/svg">
+  <rect x="25" y="25" width="50" height="50" />
+  <path d="M 125 25
+           V 75
+           H 175
+           V 25
+           Z"
+  />
+</svg>
+</body>
+</html>
